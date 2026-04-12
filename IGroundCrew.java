@@ -1,5 +1,6 @@
 public interface IGroundCrew {
 
-	public void canProcess(Aircraft task);
-	public void processTask(Aircraft task);
+	// Returns true if task is processable
+	boolean canProcess(Aircraft task);
+	void processTask(Aircraft task);
 }
