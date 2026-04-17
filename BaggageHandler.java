@@ -1,4 +1,4 @@
-public class CateringVan implements IGroundService {
+public class BaggageHandler implements IGroundService {
 
 	@Override
 	public void canService(Aircraft aircraft) {
