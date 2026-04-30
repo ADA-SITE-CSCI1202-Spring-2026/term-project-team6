@@ -1,3 +1,7 @@
+package Managers;
+
+import aircrafts.Aircraft;
+
 import java.util.*;
 
 public class FlightQueueManager {
@@ -41,15 +45,5 @@ public class FlightQueueManager {
     // Clears the queue (used for reset).
     public void clear() {
         queue.clear();
-    }
-
-    // For printing while debugging (not used in final GUI)
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Aircraft ac : queue) {
-            sb.append(ac.getFlightNumber()).append(" (").append(ac.getAircraftType()).append(")\n");
-        }
-        return sb.toString();
     }
 }

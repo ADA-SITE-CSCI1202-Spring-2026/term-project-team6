@@ -1,3 +1,7 @@
+package services;
+
+import aircrafts.Aircraft;
+
 public class FuelingTruck implements IGroundService {
     
     @Override
@@ -7,7 +11,7 @@ public class FuelingTruck implements IGroundService {
     
     @Override
     public void serviceFlight(Aircraft aircraft) {
-        System.out.println("FuelingTruck: Refueling " + aircraft.getFlightNumber() 
+        System.out.println("services.FuelingTruck: Refueling " + aircraft.getFlightNumber()
                           + " with " + aircraft.getRequiredFuel() + "L of jet fuel");
     }
 }

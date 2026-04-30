@@ -1,12 +1,8 @@
+package Managers;
+
+import aircrafts.Aircraft;
+
 import java.util.HashMap;
-
-enum SupplyItem {
-
-	JET_FUEL,
-	MEALS,
-	CART
-
-}
 
 public class DepotManager {
     private HashMap<SupplyItem, Integer> resources;
@@ -17,9 +13,9 @@ public class DepotManager {
         this.resources = new HashMap<>();
         
         // Initialize starting resources
-        resources.put(SupplyItem.JET_FUEL, 10000);
-        resources.put(SupplyItem.MEALS, 800);
-        resources.put(SupplyItem.CART, 30);
+        resources.put(SupplyItem.JET_FUEL, 500000);
+        resources.put(SupplyItem.MEALS, 5000);
+        resources.put(SupplyItem.CART, 200);
     }
     
     // Check if we have enough resources for an aircraft

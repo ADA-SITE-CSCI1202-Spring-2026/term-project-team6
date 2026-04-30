@@ -1,3 +1,18 @@
+package Controllers;
+
+import Managers.DepotManager;
+import Managers.FlightQueueManager;
+import Managers.SupplyItem;
+import Managers.SystemLogger;
+import aircrafts.Aircraft;
+import aircrafts.CargoFreighter;
+import aircrafts.CommercialJet;
+import aircrafts.PrivateCharter;
+import services.CateringVan;
+import services.FuelingTruck;
+import services.IGroundService;
+import services.BaggageHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +27,7 @@ public class AirportController {
     
     public AirportController() {
         this.queueManager = new FlightQueueManager();
-        this.depotManager = new DepotManager(50000); // Starting budget $50,000
+        this.depotManager = new DepotManager(500000); // Starting budget $500,000
         this.logger = new SystemLogger();
         this.random = new Random();
         this.flightCounter = 100;
@@ -36,13 +51,22 @@ public class AirportController {
         // flightNumber, requiredFuel, requiredMeals, requiredCarts, rewardAmount, turnaroundTime
         switch (type) {
             case 0:
-                newAircraft = new CommercialJet(flightNumber, 1, 2, 3, 4, 5); // Placeholder values, can be randomized as needed
+                // we searched the internet for the ranges
+                newAircraft = new CommercialJet(flightNumber, (int)(Math.random()*74001+6000),
+                        (int)(Math.random()*201+800), (int)(Math.random()*63+8),
+                        (int)(Math.random()*19001+1000), (int)(Math.random()*3+1));
                 break;
             case 1:
-                newAircraft = new CargoFreighter(flightNumber, 5, 4, 3, 2, 1); // Placeholder values, can be randomized as needed
+                // we searched the internet for the ranges
+                newAircraft = new CargoFreighter(flightNumber, (int)(Math.random()*69001+6000),
+                        (int)(Math.random()*5+8), 0,
+                        (int)(Math.random()*13501+1500), (int)(Math.random()*6+1));
                 break;
             default:
-                newAircraft = new PrivateCharter(flightNumber, 3, 3, 3, 3, 3); // Placeholder values, can be randomized as needed
+                // we searched the internet for the range
+                newAircraft = new PrivateCharter(flightNumber, (int)(Math.random()*17001+1000),
+                        (int)(Math.random()*11+10), 0,
+                        (int)(Math.random()*7751+250), (int)(Math.random()*1+1));
                 break;
         }
         
@@ -101,16 +125,16 @@ public class AirportController {
         // Define purchase amounts and costs for each item
         switch (item) {
             case JET_FUEL:
-                amount = 1000;
-                cost = 500;
+                amount = 10000;
+                cost = 20000;
                 break;
             case MEALS:
                 amount = 200;
-                cost = 300;
+                cost = 400;
                 break;
             case CART:
-                amount = 5;
-                cost = 100;
+                amount = 10;
+                cost = 500;
                 break;
             default:
                 return false;

@@ -1,3 +1,7 @@
+package services;
+
+import aircrafts.Aircraft;
+
 public class BaggageHandler implements IGroundService {
     
     @Override
@@ -7,7 +11,7 @@ public class BaggageHandler implements IGroundService {
     
     @Override
     public void serviceFlight(Aircraft aircraft) {
-        System.out.println("BaggageHandler: Loading " + aircraft.getRequiredCarts() 
+        System.out.println("services.BaggageHandler: Loading " + aircraft.getRequiredCarts()
                           + " luggage carts for " + aircraft.getFlightNumber());
     }
 }
