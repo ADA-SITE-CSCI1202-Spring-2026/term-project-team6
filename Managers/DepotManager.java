@@ -15,7 +15,7 @@ public class DepotManager {
         // Initialize starting resources
         resources.put(SupplyItem.JET_FUEL, 500000);
         resources.put(SupplyItem.MEALS, 5000);
-        resources.put(SupplyItem.CART, 200);
+        resources.put(SupplyItem.CART, 250);
     }
     
     // Check if we have enough resources for an aircraft

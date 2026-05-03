@@ -52,21 +52,24 @@ public class AirportController {
         switch (type) {
             case 0:
                 // we searched the internet for the ranges
-                newAircraft = new CommercialJet(flightNumber, (int)(Math.random()*74001+6000),
+                int requiredFuelCJ=(int)(Math.random()*50001+6000);
+                newAircraft = new CommercialJet(flightNumber, requiredFuelCJ,
                         (int)(Math.random()*201+800), (int)(Math.random()*63+8),
-                        (int)(Math.random()*19001+1000), (int)(Math.random()*3+1));
+                        requiredFuelCJ*2+(int)(Math.random()*25001+1000), (int)(Math.random()*3+1));
                 break;
             case 1:
                 // we searched the internet for the ranges
-                newAircraft = new CargoFreighter(flightNumber, (int)(Math.random()*69001+6000),
+                int requiredFuelCF=(int)(Math.random()*45001+6000);
+                newAircraft = new CargoFreighter(flightNumber, requiredFuelCF,
                         (int)(Math.random()*5+8), 0,
-                        (int)(Math.random()*13501+1500), (int)(Math.random()*6+1));
+                        requiredFuelCF*2+(int)(Math.random()*20501+1500), (int)(Math.random()*6+1));
                 break;
             default:
                 // we searched the internet for the range
-                newAircraft = new PrivateCharter(flightNumber, (int)(Math.random()*17001+1000),
+                int requiredFuelPC=(int)(Math.random()*10001+1000);
+                newAircraft = new PrivateCharter(flightNumber, requiredFuelPC,
                         (int)(Math.random()*11+10), 0,
-                        (int)(Math.random()*7751+250), (int)(Math.random()*1+1));
+                        requiredFuelPC*2+(int)(Math.random()*11051+250), (int)(Math.random()*1+1));
                 break;
         }
         
@@ -125,16 +128,16 @@ public class AirportController {
         // Define purchase amounts and costs for each item
         switch (item) {
             case JET_FUEL:
-                amount = 10000;
-                cost = 20000;
+                amount = 75000;
+                cost = 150000;
                 break;
             case MEALS:
-                amount = 200;
-                cost = 400;
+                amount = 700;
+                cost = 1300;
                 break;
             case CART:
-                amount = 10;
-                cost = 500;
+                amount = 80;
+                cost = 2500;
                 break;
             default:
                 return false;

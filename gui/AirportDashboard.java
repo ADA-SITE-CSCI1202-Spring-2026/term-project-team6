@@ -9,10 +9,19 @@ import java.awt.*;
 import java.util.List;
 import java.util.Random;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class AirportDashboard extends JFrame {
 
     private AirportController controller;
+
+    // Fonts
+    private static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 20);
+    private static final Font LABEL_FONT = new Font("Arial", Font.PLAIN, 18);
+    private static final Font BUTTON_FONT = new Font("Arial", Font.BOLD, 18);
+    private static final Font LIST_FONT = new Font("Arial", Font.PLAIN, 17);
+    private static final Font LOG_FONT = new Font("Monospaced", Font.PLAIN, 16);
 
     // Queue display
     private DefaultListModel<String> queueListModel;
@@ -43,9 +52,10 @@ public class AirportDashboard extends JFrame {
         random = new Random();
 
         setTitle("Skyways Airport Dispatch Dashboard");
-        setSize(2000, 1300);
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
 
         setupLayout();
         setupTimer();
@@ -54,9 +64,10 @@ public class AirportDashboard extends JFrame {
     }
 
     private void setupLayout() {
-        setLayout(new BorderLayout(12, 12));
+        setLayout(new BorderLayout(15, 15));
 
-        JPanel mainPanel = new JPanel(new GridLayout(2, 2, 12, 12));
+        JPanel mainPanel = new JPanel(new GridLayout(2, 2, 15, 15));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         mainPanel.add(createQueuePanel());
         mainPanel.add(createResourcePanel());
@@ -66,14 +77,28 @@ public class AirportDashboard extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
     }
 
+    private Border createPanelBorder(String title) {
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(title);
+        titledBorder.setTitleFont(TITLE_FONT);
+
+        return BorderFactory.createCompoundBorder(
+                titledBorder,
+                BorderFactory.createEmptyBorder(15, 15, 15, 15)
+        );
+    }
+
     private JPanel createQueuePanel() {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("Holding Pattern - Flight Queue"));
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(createPanelBorder("Holding Pattern - Flight Queue"));
 
         queueListModel = new DefaultListModel<>();
         queueList = new JList<>(queueListModel);
+        queueList.setFont(LIST_FONT);
+        queueList.setFixedCellHeight(35);
 
         clearFlightButton = new JButton("Clear Next Flight");
+        clearFlightButton.setFont(BUTTON_FONT);
+        clearFlightButton.setPreferredSize(new Dimension(200, 55));
 
         clearFlightButton.addActionListener(e -> {
             controller.processNextFlight();
@@ -87,13 +112,23 @@ public class AirportDashboard extends JFrame {
     }
 
     private JPanel createResourcePanel() {
-        JPanel panel = new JPanel(new GridLayout(4, 1));
-        panel.setBorder(BorderFactory.createTitledBorder("Terminal Depot - Resources"));
+        JPanel panel = new JPanel(new GridLayout(4, 1, 10, 10));
+        panel.setBorder(createPanelBorder("Terminal Depot - Resources"));
 
         budgetLabel = new JLabel();
         fuelLabel = new JLabel();
         mealsLabel = new JLabel();
         cartsLabel = new JLabel();
+
+        budgetLabel.setFont(LABEL_FONT);
+        fuelLabel.setFont(LABEL_FONT);
+        mealsLabel.setFont(LABEL_FONT);
+        cartsLabel.setFont(LABEL_FONT);
+
+        budgetLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        fuelLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        mealsLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        cartsLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         panel.add(budgetLabel);
         panel.add(fuelLabel);
@@ -104,11 +139,17 @@ public class AirportDashboard extends JFrame {
     }
 
     private JPanel createSupplyPanel() {
-        JPanel panel = new JPanel(new GridLayout(3, 1));
-        panel.setBorder(BorderFactory.createTitledBorder("Supply Requisition"));
+        JPanel panel = new JPanel(new GridLayout(3, 1, 10, 10));
+        panel.setBorder(createPanelBorder("Supply Requisition"));
+
+        JLabel selectLabel = new JLabel("Select supply to purchase:");
+        selectLabel.setFont(LABEL_FONT);
 
         supplyDropdown = new JComboBox<>(SupplyItem.values());
+        supplyDropdown.setFont(LABEL_FONT);
+
         purchaseButton = new JButton("Purchase Cargo");
+        purchaseButton.setFont(BUTTON_FONT);
 
         purchaseButton.addActionListener(e -> {
             SupplyItem selectedItem = (SupplyItem) supplyDropdown.getSelectedItem();
@@ -119,7 +160,7 @@ public class AirportDashboard extends JFrame {
             }
         });
 
-        panel.add(new JLabel("Select supply to purchase:"));
+        panel.add(selectLabel);
         panel.add(supplyDropdown);
         panel.add(purchaseButton);
 
@@ -127,11 +168,13 @@ public class AirportDashboard extends JFrame {
     }
 
     private JPanel createLogPanel() {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("Dispatch Radio - System Log"));
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(createPanelBorder("Dispatch Radio - System Log"));
 
         logArea = new JTextArea();
         logArea.setEditable(false);
+        logArea.setFont(LOG_FONT);
+        logArea.setMargin(new Insets(10, 10, 10, 10));
 
         panel.add(new JScrollPane(logArea), BorderLayout.CENTER);
 
