@@ -6,7 +6,7 @@ public class FuelingTruck implements IGroundService {
     
     @Override
     public boolean canService(Aircraft aircraft) {
-        return true;
+        return aircraft.getRequiredFuel() > 0;
     }
     
     @Override
