@@ -1,3 +1,5 @@
+package aircrafts;
+
 public abstract class Aircraft {
 
 	private String flightNumber;

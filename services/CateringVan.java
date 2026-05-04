@@ -1,3 +1,7 @@
+package services;
+
+import aircrafts.Aircraft;
+
 public class CateringVan implements IGroundService {
     
     @Override
@@ -7,7 +11,7 @@ public class CateringVan implements IGroundService {
     
     @Override
     public void serviceFlight(Aircraft aircraft) {
-        System.out.println("CateringVan: Loading " + aircraft.getRequiredMeals() 
+        System.out.println("services.CateringVan: Loading " + aircraft.getRequiredMeals()
                           + " in-flight meals onto " + aircraft.getFlightNumber());
     }
 }

@@ -1,3 +1,7 @@
+package services;
+
+import aircrafts.Aircraft;
+
 public interface IGroundService {
 
 	// Returns true if is servicable
