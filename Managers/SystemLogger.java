@@ -34,14 +34,4 @@ public class SystemLogger {
     public List<String> getAllLogs() {
         return new ArrayList<>(logs);
     }
-    
-    // Retrieves the most recent log entry, or an empty string if no logs exist.
-    public String getLatestLog() {
-        return logs.isEmpty() ? "" : logs.get(logs.size() - 1);
-    }
-    
-    // Clears all logs.
-    public void clear() {
-        logs.clear();
-    }
 }

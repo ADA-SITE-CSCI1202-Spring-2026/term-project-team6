@@ -27,11 +27,6 @@ public class FlightQueueManager {
         return queue.peek();
     }
 
-    // Checks if the queue is empty.
-    public boolean isEmpty() {
-        return queue.isEmpty();
-    }
-
     // Returns the number of aircraft in the queue.
     public int size() {
         return queue.size();

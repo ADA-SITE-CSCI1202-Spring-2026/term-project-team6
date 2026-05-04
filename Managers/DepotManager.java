@@ -66,11 +66,6 @@ public class DepotManager {
     }
     
     // For save/load functionality
-    public HashMap<SupplyItem, Integer> getResourcesCopy() {
-        return new HashMap<>(resources);
-    }
-    
-    // For save/load functionality
     public void setResources(HashMap<SupplyItem, Integer> resources) {
         this.resources = new HashMap<>(resources);
     }

@@ -59,7 +59,7 @@ public class AirportDashboard extends JFrame {
         controller = new AirportController();
         random = new Random();
 
-        setTitle("Skyways Airport Dispatch Dashboard");
+        setTitle("Skyways");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setupLayout();
