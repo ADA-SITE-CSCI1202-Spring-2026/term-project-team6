@@ -1,9 +1,9 @@
-package Controllers;
+package controllers;
 
-import Managers.DepotManager;
-import Managers.FlightQueueManager;
-import Managers.SupplyItem;
-import Managers.SystemLogger;
+import managers.DepotManager;
+import managers.FlightQueueManager;
+import managers.SupplyItem;
+import managers.SystemLogger;
 import aircrafts.Aircraft;
 import aircrafts.CargoFreighter;
 import aircrafts.CommercialJet;

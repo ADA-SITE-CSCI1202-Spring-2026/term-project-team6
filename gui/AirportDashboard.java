@@ -1,8 +1,8 @@
 package gui;
 
-import Controllers.AirportController;
-import Managers.DepotManager;
-import Managers.SupplyItem;
+import controllers.AirportController;
+import managers.DepotManager;
+import managers.SupplyItem;
 import aircrafts.Aircraft;
 
 import java.awt.*;
